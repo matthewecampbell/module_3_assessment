@@ -14,4 +14,11 @@ class Api::V1::ItemsController < Api::V1::BaseController
       render json: {}, status: 204
     end
   end
+
+  def create
+    @item = Item.new(name: params[:name], description: params[:description], image_url: params[:image_url])
+    if @item.save
+      render json: {name: params[:name], description: params[:description], image_url: params[:image_url], id: @item.id}, status: 201
+    end
+  end
 end
