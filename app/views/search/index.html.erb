@@ -1,10 +1,10 @@
 Search yielded <%= @count %> results!
 
 <% @stores.each do |store| %>
-  <%= store.id %>
-  <%= store.long_name %>
-  <%= store.city %>
-  <%= store.distance %>
-  <%= store.phone %>
-  <%= store.type %>
+  Store ID: <%= store.id %>
+  Store Long Name: <%= store.long_name %>
+  Store City: <%= store.city %>
+  Store Distance: <%= store.distance %>
+  Store Phone: <%= store.phone %>
+  Store Type: <%= store.type %></br>
   <% end %>
