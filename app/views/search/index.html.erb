@@ -1,0 +1,10 @@
+Search yielded <%= @count %> results!
+
+<% @stores.each do |store| %>
+  <%= store.id %>
+  <%= store.long_name %>
+  <%= store.city %>
+  <%= store.distance %>
+  <%= store.phone %>
+  <%= store.type %>
+  <% end %>
