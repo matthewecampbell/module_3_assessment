@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Items Requests", type: :request do
+RSpec.describe "Items Get Requests", type: :request do
     after(:each) do
       expect(response).to be_success
     end
@@ -29,5 +29,24 @@ RSpec.describe "Items Requests", type: :request do
     expect(json["image_url"]).to eq("www.example.com")
     expect(json["created_at"]).to eq(nil)
     expect(json["updated_at"]).to eq(nil)
+  end
+end
+
+RSpec.describe "Items Delete Requests", type: :request do
+  scenario "visitor can items path and see items" do
+    item_one, item_two = create_list(:item, 2)
+
+    get '/api/v1/items/1'
+
+    expect(json.count).to eq(4)
+    expect(json["id"]).to eq(1)
+    expect(json["description"]).to eq("description for item")
+    expect(json["image_url"]).to eq("www.example.com")
+    expect(json["created_at"]).to eq(nil)
+    expect(json["updated_at"]).to eq(nil)
+
+    delete '/api/v1/items/1'
+
+    expect(response.status).to eq(204)
   end
 end
