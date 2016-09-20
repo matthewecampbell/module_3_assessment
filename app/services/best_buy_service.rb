@@ -4,13 +4,13 @@ class BestBuyService
     @_conn = Faraday.new(:url => 'https://api.bestbuy.com')
   end
 
-  def zip_code_stores(zip)
-    response = conn.get do |request|
-      request.url "/v1/stores(area(#{zip}, 25))"
-      request.params['show'] = 'longName,city,distance,phone,storeType'
-      request.params['pageSize'] = '15'
-      request.params['apiKey'] = ENV['BEST_BUY_KEY']
-      request.params['format'] = 'json'
+  def find_stores_by_zip(zip)
+    response = conn.get do |req|
+       req.url "/v1/stores(area(#{zip},25))"
+       req.params['show'] = 'storeId,longName,city,distance,phone,storeType'
+       req.params['apiKey'] = ENV['BEST_BUY_KEY']
+       req.params['pageSize'] = '15'
+       req.params['format'] = 'json'
     end
     parse_response(response)
   end
